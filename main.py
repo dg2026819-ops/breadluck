@@ -1,6 +1,5 @@
 # 5.20
 Web VPython 3.2
-
 a = sphere(pos = vec(0,0,0), color=vec(232/255, 198/255, 131/255), radius = 1)
 b = sphere(pos = vec(0.3,0.35,0.95), color =vec(243/255, 120/255, 73/255), radius = 0.15)
 c = sphere(pos = vec(-0.3,0.35,0.95), color =vec(243/255, 120/255, 73/255), radius = 0.15)
