@@ -96,3 +96,70 @@ while chk :
     elif a1.pos.x < 0:
         a1.pos.x = 0    
         dx = -dx
+
+# 5.27
+text(text="Let's try your luck!!", pos=vec(-3, 2.5, 0), align="center", height=0.7, color=color.green)
+
+a = sphere(pos = vec(0,0,0), color=vec(232/255, 198/255, 131/255), radius = 1)
+b = sphere(pos = vec(0.3,0.35,0.95), color =vec(243/255, 120/255, 73/255), radius = 0.15)
+c = sphere(pos = vec(-0.3,0.35,0.95), color =vec(243/255, 120/255, 73/255), radius = 0.15)
+d = sphere(pos = vec(0,0.35,1), color=vec(241/255, 66/255, 35/255), radius = 0.17)
+e = ellipsoid(pos=vec(0.16,0.55,0.8), length=0.115, height=0.25, width=0.16, color=color.black)
+f = ellipsoid(pos=vec(-0.16,0.55,0.8), length=0.115, height=0.25, width=0.16, color=color.black)
+g = cylinder(pos = vec(0.7,-1.5,0) , axis = vec(0,1.5,0),radius = 0.29, color =vec(237/255, 59/255, 27/255))
+h = sphere(pos = vec(0.7,-1.7,0), color=vec(232/255, 198/255, 131/255), radius = 0.29)
+
+a1 = compound([a,b,c,d,e,f,g,h])
+
+box(pos=vec(0, -3, 0), size = vec(1.5,1.5,1.5), opacity=0.5)
+box(pos=vec(1.6, -3, 0), size = vec(1.5,1.5,1.5), opacity=0.5)
+box(pos=vec(3.2, -3, 0), size = vec(1.5,1.5,1.5), opacity=0.5)
+box(pos=vec(4.8, -3, 0), size = vec(1.5,1.5,1.5), opacity=0.5)
+
+
+sphere(pos = vec(1.6, -3, 0), color=vec(232/255, 198/255, 131/255), radius = 0.5)
+sphere(pos = vec(3.2, -3, 0), color=vec(232/255, 198/255, 131/255), radius = 0.5)
+sphere(pos = vec(4.8, -3, 0), color=vec(232/255, 198/255, 131/255), radius = 0.5)
+
+
+hshape = shapes.arc(angle1=0, angle2=0.999*pi/2, radius=0.4, thickness=0.5)
+hpath = paths.circle(radius=0.3)
+demihemi = extrusion(shape=hshape, path=hpath, color=color.green, pos = vec(0, -3, 0))
+demihemi.rotate(angle=pi/2, axis=vec(0,1,0)) 
+demihemi.rotate(angle=pi/2, axis=vec(-1,0,0)) 
+
+hshape = shapes.arc(angle1=0, angle2=0.999*pi/2, radius=0.4, thickness=0.5)
+hpath = paths.circle(radius=0.1)
+demihemi = extrusion(shape=hshape, path=hpath, color=color.green, pos = vec(0, -3, 0))
+demihemi.rotate(angle=pi/2, axis=vec(0,1,0)) 
+demihemi.rotate(angle=pi/2, axis=vec(-1,0,0)) 
+
+
+
+cnt = 0
+
+chk = True
+def click(event):
+    global chk
+    print('당첨되셨습니다!')
+    chk = False
+
+
+
+dx = 3
+
+i = 0
+while chk :
+    rate(10)
+    a1.pos.x += dx
+    
+    if a1.pos.x > 5:
+        a1.pos.x = 5    
+        dx = -dx        
+    elif a1.pos.x < 0:
+        a1.pos.x = 0    
+        dx = -dx
+
+        
+        
+        
