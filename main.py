@@ -346,5 +346,130 @@ while chk :
     
     if a1.pos.x > 5:
         
+        Web VPython 3.2
+
+
+# 6.10
+
+text(text="Let's try your luck!!", pos=vec(-3, 2.5, 0), align="center", height=0.7, color=color.green)
+
+a = sphere(pos = vec(0,0,0), color=vec(232/255, 198/255, 131/255), radius = 1)
+b = sphere(pos = vec(0.3,0.35,0.95), color =vec(243/255, 120/255, 73/255), radius = 0.15)
+c = sphere(pos = vec(-0.3,0.35,0.95), color =vec(243/255, 120/255, 73/255), radius = 0.15)
+d = sphere(pos = vec(0,0.35,1), color=vec(241/255, 66/255, 35/255), radius = 0.17)
+e = ellipsoid(pos=vec(0.16,0.55,0.8), length=0.115, height=0.25, width=0.16, color=color.black)
+f = ellipsoid(pos=vec(-0.16,0.55,0.8), length=0.115, height=0.25, width=0.16, color=color.black)
+g = cylinder(pos = vec(0,-1.5,0) , axis = vec(0,1.5,0),radius = 0.29, color =vec(237/255, 59/255, 27/255))
+h = sphere(pos = vec(0,-1.7,0), color=vec(232/255, 198/255, 131/255), radius = 0.29)
+
+a1 = compound([a,b,c,d,e,f,g,h])
+
+
+box(pos=vec(0, -3, 0), size = vec(1.5,1.5,1.5), opacity=0.5)
+box(pos=vec(1.6, -3, 0), size = vec(1.5,1.5,1.5), opacity=0.5)
+box(pos=vec(3.2, -3, 0), size = vec(1.5,1.5,1.5), opacity=0.5)
+box(pos=vec(4.8, -3, 0), size = vec(1.5,1.5,1.5), opacity=0.5)
+
+
+hshape1 = shapes.arc(angle1=0, angle2=0.999*pi, radius=0.5, thickness=0.2)
+hpath1 = paths.circle(radius=0.01)
+demihemi1 = extrusion(shape=hshape1, path=hpath1, color=vec(232/255, 198/255, 131/255),  pos = vec(0, -3, 0))
+demihemi1.rotate(angle=pi/2, axis=vec(-1,0,0))
+
+hshape2 = shapes.arc(angle1=0, angle2=0.999*pi, radius=0.3, thickness=0.3)
+hpath2 = paths.circle(radius=0.01)
+demihemi2 = extrusion(shape=hshape2, path=hpath2, color=vec(184/255, 37/255, 37/255), pos = vec(0, -3, 0), opacity=0.5)
+demihemi2.rotate(angle=pi/2, axis=vec(-1,0,0))
+
+
+hshape1 = shapes.arc(angle1=0, angle2=0.999*pi, radius=0.5, thickness=0.2)
+hpath1 = paths.circle(radius=0.01) 
+demihemi1 = extrusion(shape=hshape1, path=hpath1,color=vec(232/255, 198/255, 131/255), pos = vec(1.6, -3, 0))
+demihemi1.rotate(angle=pi/2, axis=vec(-1,0,0))
+
+hshape2 = shapes.arc(angle1=0, angle2=0.999*pi, radius=0.3, thickness=0.3)
+hpath2 = paths.circle(radius=0.01)
+demihemi2 = extrusion(shape=hshape2, path=hpath2,color=vec(92/255, 50/255, 29/255), pos = vec(1.6, -3, 0))
+demihemi2.rotate(angle=pi/2, axis=vec(-1,0,0))
+
+
+hshape1 = shapes.arc(angle1=0, angle2=0.999*pi, radius=0.5, thickness=0.2)
+hpath1 = paths.circle(radius=0.01) 
+demihemi1 = extrusion(shape=hshape1, path=hpath1,color=vec(232/255, 198/255, 131/255), pos = vec(3.2, -3, 0))
+demihemi1.rotate(angle=pi/2, axis=vec(-1,0,0))
+
+hshape2 = shapes.arc(angle1=0, angle2=0.999*pi, radius=0.3, thickness=0.3)
+hpath2 = paths.circle(radius=0.01)
+demihemi2 = extrusion(shape=hshape2, path=hpath2,color=vec(73/255,100/255, 53/255), pos = vec(3.2, -3, 0), opacity=0.5)
+demihemi2.rotate(angle=pi/2, axis=vec(-1,0,0))
+
+
+hshape1 = shapes.arc(angle1=0, angle2=0.999*pi, radius=0.5, thickness=0.2)
+hpath1 = paths.circle(radius=0.01) 
+demihemi1 = extrusion(shape=hshape1, path=hpath1,color=color.black, pos = vec(4.8, -3, 0))
+demihemi1.rotate(angle=pi/2, axis=vec(-1,0,0))
+
+hshape2 = shapes.arc(angle1=0, angle2=0.999*pi, radius=0.3, thickness=0.3)
+hpath2 = paths.circle(radius=0.01)
+demihemi2 = extrusion(shape=hshape2, path=hpath2, color=vec(49/255,35/255, 27/255), pos = vec(4.8, -3, 0))
+demihemi2.rotate(angle=pi/2, axis=vec(-1,0,0))
+
+
+cnt = 0
+a1.pos.x = -0.75
+
+# 2. 게임 상태 변수
+is_moving = True  # True면 움직임, False면 멈춤
+msg_text = None   # 메시지 글자를 담을 변수
+
+# 3. 스페이스바 입력 함수
+def key_input(event):
+    global is_moving, msg_text
+    
+    if event.key == ' ': # 스페이스바를 누르면
+        if is_moving == True:
+            is_moving = False # 멈추기
+            
+            # 멈춘 위치(x)에 따라 알맞은 상자 메시지 정하기
+            # 각 박스의 경계선 기준(0.8, 2.4, 4.0)으로 구역을 나누었습니다.
+            if a1.pos.x < 0.8:
+                my_msg = "1번 상자 당첨!"
+            elif a1.pos.x < 2.4:
+                my_msg = "2번 상자 당첨!"
+            elif a1.pos.x < 4.0:
+                my_msg = "3번 상자 당첨!"
+            else:
+                my_msg = "4번 상자 당첨!"
+                
+                # 화면에 메시지 생성
+           
+            print(my_msg)
+            
+        else:
+            is_moving = True # 다시 움직이기
+            if msg_text:
+                msg_text.visible = False # 메시지 지우기
+                msg_text = None
+            print("게임 재시작!")
+
+# 키보드 이벤트 연결
+scene.bind('keydown', key_input)
+
+# 4. 메인 움직임 루프
+dx = 1 # 이동 속도
+
+while True:
+    rate(30)
+    
+    if is_moving == True:
+        a1.pos.x = a1.pos.x + dx
         
+        # 🤖 [핵심 부딪힘 로직]
+        # 첫 번째 박스의 왼쪽 끝(-0.75)과 마지막 박스의 오른쪽 끝(5.55)에서 튕기기
+        if a1.pos.x > 5.55:
+            a1.pos.x = 5.55    
+            dx = -dx # 방향 반대로!
+        elif a1.pos.x < -0.75:
+            a1.pos.x = -0.75    
+            dx = -dx # 방향 반대로!
         
